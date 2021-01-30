@@ -49,8 +49,9 @@ function closeLightbox() {
 }
 
 closeModalBtn.addEventListener('click', closeLightbox);
-lightboxRef.addEventListener('click', closeLightbox);
-
+lightboxRef.addEventListener('click', (event) => {
+    if(event.target.classList.contains('lightbox__overlay')) closeLightbox();
+});
 window.addEventListener('keydown', (event) => {
     const currentItemIndex = galleryItems.findIndex((elem, index) => elem.original === largeImageRef.src)
     const lastItemIndex = Object.keys(galleryItems).length; 
