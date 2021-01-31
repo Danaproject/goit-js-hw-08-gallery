@@ -53,7 +53,7 @@ lightboxRef.addEventListener('click', (event) => {
     if(event.target.classList.contains('lightbox__overlay')) closeLightbox();
 });
 window.addEventListener('keydown', (event) => {
-    const currentItemIndex = galleryItems.findIndex((elem, index) => elem.original === largeImageRef.src)
+    const currentItemIndex = galleryItems.findIndex((elem) => elem.original === largeImageRef.src)
     const lastItemIndex = Object.keys(galleryItems).length; 
     
     if (event.code === "ArrowRight") {
