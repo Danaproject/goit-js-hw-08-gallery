@@ -57,6 +57,8 @@ function setLargeImageSrc(url) {
 function closeLightbox() {
     lightboxRef.classList.remove('is-open');
     largeImageRef.src = "";
+    closeModalBtn.removeEventListener('click', closeLightbox);
+    overlayRef.removeEventListener('click', closeLightbox);
     window.removeEventListener('keydown', onKeydown);
 }
 
