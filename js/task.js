@@ -18,10 +18,11 @@ function createGaleryItem(item) {
     linkRef.setAttribute('href', `${item.original}`);
     imageRef.setAttribute('class', 'gallery__image');
     imageRef.setAttribute('src', `${item.preview}`);
-    imageRef.setAttribute('alt', `${item .description}`);
+    imageRef.setAttribute('alt', `${item.description}`);
     imageRef.setAttribute('data-source', `${item.original}`);
     return itemRef;
 };
+
 const galleryItemsList = galleryItems.map(item => createGaleryItem(item));
 galleryRef.append(...galleryItemsList);
 
@@ -36,15 +37,20 @@ function onGaleryClick(event) {
 
     // openLighbox();
     lightboxRef.classList.add('is-open');
+    closeModalBtn.addEventListener('click', closeLightbox);
+    overlayRef.addEventListener('click', closeLightbox);
     window.addEventListener('keydown', onKeydown);
 
 }
+
 function setLargeImageSrc(url) {
     largeImageRef.src = url;
 }
 
 // function openLighbox() {
 //     lightboxRef.classList.add('is-open');
+//     closeModalBtn.addEventListener('click', closeLightbox);
+//     overlayRef.addEventListener('click', closeLightbox);
 //     window.addEventListener('keydown', onKeydown);
 // }
 
@@ -53,13 +59,6 @@ function closeLightbox() {
     largeImageRef.src = "";
     window.removeEventListener('keydown', onKeydown);
 }
-
-closeModalBtn.addEventListener('click', closeLightbox);
-overlayRef.addEventListener('click', closeLightbox);
-
-// lightboxRef.addEventListener('click', (event) => {
-//     if(event.target.classList.contains('lightbox__overlay')) closeLightbox();
-// });
 
 function onKeydown(event) {
     const currentItemIndex = galleryItems.findIndex((elem) => elem.original === largeImageRef.src)
